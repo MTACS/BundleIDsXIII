@@ -1,5 +1,5 @@
 //BundleIDs Originally created by @NoahSaso
-//Updated in 2018 by @TD_Advocate
+//Updated in 2018 by @TD_Advocate, in 2019 for iOS by MTAC
 //Huge thanks to @TheTomMetzger and @Skittyblock for their massive amounts of help with updating and adding new features
 //Shoutout to @xanDesign_ for making the new icon for the update
 
@@ -149,7 +149,7 @@ NSMutableArray *bundleIDs;
     theApps = [[NSMutableDictionary alloc] init];
     for(int i = 0; i < [apps.applications allKeys].count; i++) {
         NSString* name = [[apps.applications allValues] objectAtIndex:i];
-        if([excludedApps containsObject:name]) {
+        if([excludedApps containsObject:name] || [name containsString:@"Service"] || [name containsString:@"service"]) {
             continue;
         }
         theApps[[[apps.applications allKeys] objectAtIndex:i]] = name;
@@ -225,6 +225,8 @@ NSMutableArray *bundleIDs;
     cell.textLabel.text = [appNames objectAtIndex:indexPath.row];
     
     
+    /* Remove AppList icon setting as it's currently broken on iOS 13
+    
     //Setting the app icon size, colour, shape, and image
     UIImageView *imgAppIcon=[[UIImageView alloc] initWithFrame:CGRectMake(30, 5, 30, 30)];
     imgAppIcon.backgroundColor=[UIColor clearColor];
@@ -234,7 +236,7 @@ NSMutableArray *bundleIDs;
     [cell.contentView addSubview:imgAppIcon];
     
     //Show app icon on table
-    cell.accessoryView = imgAppIcon;
+    cell.accessoryView = imgAppIcon; */
     
     return cell;
     
